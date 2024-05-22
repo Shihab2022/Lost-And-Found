@@ -1,0 +1,7 @@
+
+DATABASE_URL="database user"
+NODE_ENV="dev"
+PORT=your port
+BCRYPT_SALT_ROUNDS=rounded salt for bcrypt
+JWT_ACCESS_SECRET=access secret
+JWT_ACCESS_EXPIRES_IN=access expire time
