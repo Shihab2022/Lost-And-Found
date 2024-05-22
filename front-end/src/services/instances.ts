@@ -5,7 +5,7 @@ import axios from "axios";
 import qs from "qs";
 
 export const apiHandler = ({
-    baseURL = process.env.REACT_APP_API_ENDPOINT,
+    baseURL = process.env.NEXT_PUBLIC_BACKEND_API_URL,
     params,
     path,
     formData,
@@ -21,6 +21,7 @@ export const apiHandler = ({
             Authorization: `Bearer ${getToken()}`,
         },
         method: axiosMethod,
+        data: params,
         url: parsedPath,
         ...(axiosMethod === "get"
             ? params && { params: {} }

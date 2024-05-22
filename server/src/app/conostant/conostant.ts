@@ -9,6 +9,7 @@ export const userIncludeField = {
 export const allowedOrigins = [
     'https://helpful-faloodeh-161127.netlify.app',
     'http://localhost:5173',
-    "https://teal-malabi-8f03ab.netlify.app"
+    "https://teal-malabi-8f03ab.netlify.app",
+    "http://localhost:3000",
     // Add more allowed origins as needed
 ]
