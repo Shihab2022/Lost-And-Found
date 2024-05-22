@@ -5,11 +5,8 @@ import React from "react";
 const Banner = () => {
   return (
     <>
-      {/* <Box sx={{ position: "relative" }}> */}
-      {/* <Box sx={{ position: "absolute", top: 0, left: 0, width: "100%" }}> */}
       <Image
         src={assets?.banner}
-        //   width={1000}
         height={500}
         style={{
           width: "100%",
@@ -17,32 +14,39 @@ const Banner = () => {
         }}
         alt="Banner Image"
       />
-      {/* </Box> */}
       <Box
         sx={{
           position: "absolute",
-          top: "20%",
+          top: "30%",
           marginX: "250px",
           color: "white",
         }}
       >
-        <Stack justifyContent="center" alignItems="center">
-          <Typography variant="h4">
+        <Stack justifyContent="center" alignItems="center" spacing={0.25}>
+          <Typography variant="h3" sx={{ fontWeight: 550 }}>
             POWERFUL LOST AND FOUND MADE EASY
           </Typography>
-          <Typography>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam sit
-            nesciunt optio illum ad enim, exercitationem soluta quo itaque.
-            Aspernatur nemo cumque molestiae provident vitae quia aliquam natus
-            hic ad.
+          <Typography variant="h3" sx={{ fontWeight: 400 }}>
+            MADE EASY
           </Typography>
-          <Stack direction="row" spacing={2}>
+          <Typography>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat,
+            recusandae rerum iusto eos impedit eius perspiciatis tempore
+            quibusdam
+          </Typography>
+          <Typography>
+            corporis est doloremque amet quidem magnam porro hic pariatur nam
+            eveniet dicta reprehenderit explicabo quisquam,
+          </Typography>
+          <Typography>
+            distinctio unde ad esse quos repellendus animi consectetur.
+          </Typography>
+          <Stack direction="row" spacing={2} sx={{ marginTop: "15px" }}>
             <Button variant="contained">Button 1</Button>
             <Button variant="contained">Button 1</Button>
           </Stack>
         </Stack>
       </Box>
-      {/* </Box> */}
     </>
   );
 };
