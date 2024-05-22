@@ -17,7 +17,7 @@ const Banner = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "30%",
+          top: "20%",
           marginX: "250px",
           color: "white",
         }}
@@ -26,8 +26,8 @@ const Banner = () => {
           <Typography variant="h3" sx={{ fontWeight: 550 }}>
             POWERFUL LOST AND FOUND MADE EASY
           </Typography>
-          <Typography variant="h3" sx={{ fontWeight: 400 }}>
-            MADE EASY
+          <Typography variant="h4" sx={{ fontWeight: 400 }}>
+            Find what you lost, reunite what you found!
           </Typography>
           <Typography>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quaerat,
@@ -42,8 +42,8 @@ const Banner = () => {
             distinctio unde ad esse quos repellendus animi consectetur.
           </Typography>
           <Stack direction="row" spacing={2} sx={{ marginTop: "15px" }}>
-            <Button variant="contained">Button 1</Button>
-            <Button variant="contained">Button 1</Button>
+            <Button variant="contained">Report a Lost Item</Button>
+            <Button variant="contained">Report a Found Item</Button>
           </Stack>
         </Stack>
       </Box>
