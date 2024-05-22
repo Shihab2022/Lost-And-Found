@@ -4,10 +4,10 @@ import Link from "next/link";
 import dynamic from "next/dynamic";
 
 const Navbar = () => {
-  //   const AuthButton = dynamic(
-  //     () => import("@/components/ui/AuthButton/AuthButton"),
-  //     { ssr: false }
-  //   );
+  const AuthButton = dynamic(
+    () => import("@/components/ui/AuthButton/AuthButton"),
+    { ssr: false }
+  );
   return (
     <Container>
       <Stack
@@ -25,16 +25,18 @@ const Navbar = () => {
         </Typography>
 
         <Stack direction="row" justifyContent="space-between" gap={4}>
-          <Typography component={Link} href="/consultation">
-            Consultation
+          <Typography component={Link} href="/">
+            Home
           </Typography>
-          <Typography>Health Plans</Typography>
+          <Typography component={Link} href="/about-us">
+            About Us
+          </Typography>
           <Typography>Medicine</Typography>
           <Typography>Diagnostics</Typography>
           <Typography>NGOs</Typography>
         </Stack>
 
-        {/* <AuthButton /> */}
+        <AuthButton />
       </Stack>
     </Container>
   );
