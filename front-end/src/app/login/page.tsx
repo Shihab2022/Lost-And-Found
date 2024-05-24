@@ -17,9 +17,11 @@ import CForm from "@/components/froms/CFroms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "@/Schema/loginSchema";
 import CInputField from "@/components/froms/CInput";
-
+import { FieldValues} from "react-hook-form";
 export default function Login() {
-  const handleLogin = async () => {};
+  const handleLogin = async (values: FieldValues) => {
+    console.log({values})
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
