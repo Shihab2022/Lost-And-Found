@@ -22,7 +22,6 @@ export default function Login() {
   const handleLogin = async (values: FieldValues) => {
     try {
       const res = await loginUserApi(values);
-      console.log(res)
       if (res?.data?.success) {
         const token = res.data.data.token;
         toast.success(res?.data?.message);
