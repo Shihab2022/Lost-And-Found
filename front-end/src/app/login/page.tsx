@@ -3,10 +3,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -17,10 +13,10 @@ import CForm from "@/components/froms/CFroms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "@/Schema/loginSchema";
 import CInputField from "@/components/froms/CInput";
-import { FieldValues} from "react-hook-form";
+import { FieldValues } from "react-hook-form";
 export default function Login() {
   const handleLogin = async (values: FieldValues) => {
-    console.log({values})
+    console.log({ values });
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -47,24 +43,24 @@ export default function Login() {
             password: "",
           }}
         >
-      <Grid container spacing={2} my={1}>
-                <Grid item md={12}>
-                  <CInputField
-                    name="email"
-                    label="Email"
-                    type="email"
-                    fullWidth={true}
-                  />
-                </Grid>
-                <Grid item md={12}>
-                  <CInputField
-                    name="password"
-                    label="Password"
-                    type="password"
-                    fullWidth={true}
-                  />
-                </Grid>
-              </Grid>
+          <Grid container spacing={2} my={1}>
+            <Grid item md={12}>
+              <CInputField
+                name="email"
+                label="Email"
+                type="email"
+                fullWidth={true}
+              />
+            </Grid>
+            <Grid item md={12}>
+              <CInputField
+                name="password"
+                label="Password"
+                type="password"
+                fullWidth={true}
+              />
+            </Grid>
+          </Grid>
           <Button
             sx={{
               margin: "10px 0px",
