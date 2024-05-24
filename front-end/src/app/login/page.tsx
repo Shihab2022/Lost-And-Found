@@ -17,6 +17,7 @@ import { loginUserApi } from "@/services/auth";
 import { toast } from "sonner";
 import { setToken } from "@/utils/storage";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function Login() {
   const router = useRouter();
   const handleLogin = async (values: FieldValues) => {
@@ -86,6 +87,13 @@ export default function Login() {
             Login
           </Button>
         </CForm>
+        <Grid container justifyContent="flex-end">
+          <Grid item>
+            <Link href="/register">
+              Already have an account? Register
+            </Link>
+          </Grid>
+        </Grid>
       </Box>
     </Container>
   );

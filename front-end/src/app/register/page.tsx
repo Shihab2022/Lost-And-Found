@@ -3,7 +3,6 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -14,9 +13,28 @@ import CForm from "@/components/froms/CFroms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerValidationSchema } from "@/Schema/registerSchema";
 import { FieldValues } from "react-hook-form";
+import Link from "next/link";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { registerUser } from "@/services/auth";
+
 export default function Register() {
+  const router = useRouter();
   const handleRegister = async (values: FieldValues) => {
-    console.log({ values });
+    try {
+      const res = await registerUser({
+        ...values,
+        profile: {
+          bio: "",
+        },
+      });
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+        router.push("/login");
+      }
+    } catch (error) {
+      console.log({ error });
+    }
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -41,25 +59,16 @@ export default function Register() {
           defaultValues={{
             email: "",
             password: "",
-            firstName: "",
-            lastName: "",
+            name: "",
           }}
         >
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <CInputField
-                label="First Name"
+                label="Usr Name"
                 type="text"
                 fullWidth={true}
-                name="firstName"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <CInputField
-                label="Last Name"
-                type="text"
-                fullWidth={true}
-                name="lastName"
+                name="name"
               />
             </Grid>
             <Grid item xs={12}>
@@ -90,9 +99,7 @@ export default function Register() {
         </CForm>
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link href="#" variant="body2">
-              Already have an account? Sign in
-            </Link>
+            <Link href="/login">Already have an account? Login</Link>
           </Grid>
         </Grid>
       </Box>

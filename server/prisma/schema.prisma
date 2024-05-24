@@ -30,8 +30,8 @@ model User {
 model UserProfile {
   id        String   @id @default(uuid())
   userId    String   @unique
-  bio       String
-  age       Int      @default(0)
+  bio       String?  @default("You are not provided you Bio data .Please update those information .")
+  age       Int?     @default(0)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -41,10 +41,10 @@ model UserProfile {
 }
 
 model Category {
-  id        String     @id @default(uuid())
+  id        String      @id @default(uuid())
   name      String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
   foundItem FoundItem[]
 
   @@map("category")
@@ -52,8 +52,8 @@ model Category {
 
 model FoundItem {
   id            String   @id @default(uuid())
-  userId        String   
-  categoryId    String 
+  userId        String
+  categoryId    String
   foundItemName String
   description   String
   location      String
@@ -69,7 +69,7 @@ model FoundItem {
 model Claim {
   id                     String   @id @default(uuid())
   userId                 String
-  foundItemId            String     @unique
+  foundItemId            String   @unique
   status                 Status   @default(PENDING)
   distinguishingFeatures String
   lostDate               DateTime @default(now())
