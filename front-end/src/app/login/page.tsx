@@ -8,15 +8,30 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { loginUserApi } from "@/services/auth";
 import CForm from "@/components/froms/CFroms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginValidationSchema } from "@/Schema/loginSchema";
 import CInputField from "@/components/froms/CInput";
 import { FieldValues } from "react-hook-form";
+import { loginUserApi } from "@/services/auth";
+import { toast } from "sonner";
+import { setToken } from "@/utils/storage";
+import { useRouter } from "next/navigation";
 export default function Login() {
+  const router = useRouter();
   const handleLogin = async (values: FieldValues) => {
-    console.log({ values });
+    try {
+      const res = await loginUserApi(values);
+      console.log(res)
+      if (res?.data?.success) {
+        const token = res.data.data.token;
+        toast.success(res?.data?.message);
+        setToken(token);
+        router.push("/");
+      }
+    } catch (error) {
+      console.log({ error });
+    }
   };
   return (
     <Container component="main" maxWidth="xs">
@@ -33,7 +48,7 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Login in
         </Typography>
         <CForm
           onSubmit={handleLogin}
