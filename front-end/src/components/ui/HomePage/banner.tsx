@@ -17,7 +17,7 @@ const Banner = () => {
       <Box
         sx={{
           position: "absolute",
-          top: "20%",
+          top: 250,
           marginX: "250px",
           color: "white",
         }}
