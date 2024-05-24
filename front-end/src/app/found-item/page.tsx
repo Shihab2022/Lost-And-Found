@@ -12,10 +12,10 @@ import CForm from "@/components/froms/CFroms";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CInputField from "@/components/froms/CInput";
 import { FieldValues } from "react-hook-form";
-import { lostItemSchema } from "@/Schema/lostItemSchema";
 import CDatePicker from "@/components/froms/CDatePicker";
-const LostItem = () => {
-  const submitLostItem = async (values: FieldValues) => {
+import { foundItemSchema } from "@/Schema/foundSchema";
+const FoundItem = () => {
+  const submitFoundItem = async (values: FieldValues) => {
     console.log({ values });
   };
   return (
@@ -34,21 +34,19 @@ const LostItem = () => {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Add Your Lost Item
+            Add Your Found Item
           </Typography>
           <CForm
-            onSubmit={submitLostItem}
-            resolver={zodResolver(lostItemSchema)}
+            onSubmit={submitFoundItem}
+            resolver={zodResolver(foundItemSchema)}
             defaultValues={{
               category: "",
-              brand: "",
-              color: "",
-              distinguishing: "",
               location: "",
+              description: "",
             }}
           >
             <Grid container spacing={2} my={1}>
-              <Grid item md={6}>
+              <Grid item md={12}>
                 <CInputField
                   name="category"
                   label="Category"
@@ -56,27 +54,10 @@ const LostItem = () => {
                   fullWidth={true}
                 />
               </Grid>
-              <Grid item md={6}>
+              <Grid item md={12}>
                 <CInputField
-                  name="brand"
-                  label="Brand Name"
-                  type="text"
-                  fullWidth={true}
-                />
-              </Grid>
-              <Grid item md={6}>
-                <CInputField
-                  name="color"
-                  label="Color"
-                  type="text"
-                  fullWidth={true}
-                />
-              </Grid>
-
-              <Grid item md={6}>
-                <CInputField
-                  name="distinguishing"
-                  label="Distinguishing"
+                  name="description"
+                  label="Description"
                   type="text"
                   fullWidth={true}
                 />
@@ -90,7 +71,7 @@ const LostItem = () => {
                 />
               </Grid>
               <Grid item md={6}>
-                <CDatePicker  name="date" label="Date" fullWidth={true} />
+                <CDatePicker name="date" label="Date" fullWidth={true} />
               </Grid>
               <Grid item md={6}>
                 <CInputField
@@ -126,4 +107,4 @@ const LostItem = () => {
   );
 };
 
-export default LostItem;
+export default FoundItem;
