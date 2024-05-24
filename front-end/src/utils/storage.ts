@@ -14,3 +14,13 @@ export function getToken() {
         return "";
     }
 }
+
+
+export const removeToken = () => {
+
+    try {
+        localStorage.removeItem("token");;
+    } catch (error) {
+        return "";
+    }
+};
