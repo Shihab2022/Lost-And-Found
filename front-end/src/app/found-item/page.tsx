@@ -14,7 +14,14 @@ import CInputField from "@/components/froms/CInput";
 import { FieldValues } from "react-hook-form";
 import CDatePicker from "@/components/froms/CDatePicker";
 import { foundItemSchema } from "@/Schema/foundSchema";
+import { useRouter } from "next/navigation";
+import { getToken } from "@/utils/storage";
 const FoundItem = () => {
+  const router = useRouter();
+  const token = getToken();
+  if (!token) {
+    router.push("/login");
+  }
   const submitFoundItem = async (values: FieldValues) => {
     console.log({ values });
   };
