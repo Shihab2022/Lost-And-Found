@@ -51,17 +51,22 @@ model Category {
 }
 
 model FoundItem {
-  id            String   @id @default(uuid())
-  userId        String
-  categoryId    String
-  foundItemName String
-  description   String
-  location      String
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  claim         Claim?
-  user          User     @relation(fields: [userId], references: [id])
-  category      Category @relation(fields: [categoryId], references: [id])
+  id             String    @id @default(uuid())
+  userId         String
+  categoryId     String
+  foundItemName  String
+  distinguishing String?
+  description    String?
+  location       String
+  color          String?
+  date           String?
+  number         String?
+  email          String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  claim          Claim?
+  user           User      @relation(fields: [userId], references: [id])
+  category       Category  @relation(fields: [categoryId], references: [id])
 
   @@map("foundItem")
 }

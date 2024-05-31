@@ -16,7 +16,7 @@ import { lostItemSchema } from "@/Schema/lostItemSchema";
 import CDatePicker from "@/components/froms/CDatePicker";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/utils/storage";
-import { getCategory } from "./../../services/lostItem";
+import { createLostItem, getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
 const LostItem = () => {
   const [category, setCategory] = React.useState([]);
@@ -27,6 +27,20 @@ const LostItem = () => {
   }
   const submitLostItem = async (values: FieldValues) => {
     console.log({ values });
+    const { category: categoryName, brand, ...rest } = values;
+    const info = {
+      categoryId: category!?.find((c) => c!.name === categoryName)?.id,
+      foundItemName: brand,
+      date: "",
+      ...rest,
+    };
+    try {
+      const res = await createLostItem(info);
+      console.log({ res });
+    } catch (error) {
+      console.log({ error });
+    }
+    console.log({ info });
   };
   const getItemCategory = async () => {
     try {
