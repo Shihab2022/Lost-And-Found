@@ -36,7 +36,10 @@ const createFoundItem = async (req: any) => {
         ...result, user: isUserExit, category: isCategoryExit
     }
 }
-
+const getCategory = async () => {
+    const res = await prisma.category.findMany({})
+    return res
+}
 const getFoundItem = async (params: any, options: IPaginationOptions) => {
     const { limit, skip, page } = calculatePagination(options)
     const { searchTerm, ...filterData } = params
@@ -146,5 +149,6 @@ export const CategoryService = {
     createClaim,
     getClaim,
     updateClaimStatus,
+    getCategory
 
 }

@@ -16,7 +16,10 @@ import { lostItemSchema } from "@/Schema/lostItemSchema";
 import CDatePicker from "@/components/froms/CDatePicker";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/utils/storage";
+import { getCategory } from "./../../services/lostItem";
+import CSelectField from "@/components/froms/CSelectField";
 const LostItem = () => {
+  const [category, setCategory] = React.useState([]);
   const router = useRouter();
   const token = getToken();
   if (!token) {
@@ -25,6 +28,20 @@ const LostItem = () => {
   const submitLostItem = async (values: FieldValues) => {
     console.log({ values });
   };
+  const getItemCategory = async () => {
+    try {
+      const res = await getCategory(undefined);
+      if (res?.success) {
+        setCategory(res?.data?.data);
+      }
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+  React.useEffect(() => {
+    getItemCategory();
+  }, []);
+  console.log({ category });
   return (
     <>
       <Container component="main" maxWidth="xl">
@@ -56,11 +73,12 @@ const LostItem = () => {
           >
             <Grid container spacing={2} my={1}>
               <Grid item md={6}>
-                <CInputField
+                <CSelectField
                   name="category"
                   label="Category"
-                  type="text"
                   fullWidth={true}
+                  required={true}
+                  items={category.map((c) => c.name)}
                 />
               </Grid>
               <Grid item md={6}>
@@ -97,7 +115,7 @@ const LostItem = () => {
                 />
               </Grid>
               <Grid item md={6}>
-                <CDatePicker  name="date" label="Date" fullWidth={true} />
+                <CDatePicker name="date" label="Date" fullWidth={true} />
               </Grid>
               <Grid item md={6}>
                 <CInputField
