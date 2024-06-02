@@ -10,7 +10,7 @@ export const apiHandler = ({
     path,
     formData,
     axiosMethod,
-}: TInstances) => {
+}: TInstances): any => {
     let parsedPath = baseURL + path;
     if (axiosMethod === "get" && Object.keys(params).length) {
         parsedPath = `${parsedPath}?${qs.stringify(params)}`;

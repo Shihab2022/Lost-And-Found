@@ -19,6 +19,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { getToken } from "@/utils/storage";
+import { decodedToken } from "@/utils/jwt";
+import { getUserInfo } from "@/services/auth";
+import { initialProfileProps } from "@/contants/common";
 
 const drawerWidth = 240;
 
@@ -106,7 +110,17 @@ export default function DashboardDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const token = getToken();
+  const user = decodedToken(token);
+  const [profileInfo, setProfileInfo] = React.useState(initialProfileProps);
+  const getUser = async () => {
+    const res = await getUserInfo(user);
+    const userInfo = res.data.data.user;
+    setProfileInfo(userInfo);
+  };
+  React.useEffect(() => {
+    getUser();
+  }, []);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -125,7 +139,7 @@ export default function DashboardDrawer({
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Lost and Found Item
+            Hi , {profileInfo?.name} Welcome your dashboard
           </Typography>
         </Toolbar>
       </AppBar>

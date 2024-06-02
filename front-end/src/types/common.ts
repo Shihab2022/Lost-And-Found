@@ -9,7 +9,14 @@ export type IMeta = {
 };
 
 export type UserRole = keyof typeof USER_ROLE;
-
+export type TProfileProps = {
+    createdAt: string;
+    email: string;
+    id: string;
+    name: string;
+    role: string;
+    updatedAt: string;
+};
 export interface DrawerItem {
     title: string;
     path: string;
