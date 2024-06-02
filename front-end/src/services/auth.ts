@@ -50,3 +50,13 @@ export const getAllUserInfo = async (params: any) => {
     });
     return res;
 };
+export const deleteUserInfo = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/user",
+        axiosMethod: "delete",
+        formData: false,
+        params: params,
+    });
+    return res;
+};
