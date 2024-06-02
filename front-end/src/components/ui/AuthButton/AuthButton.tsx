@@ -24,7 +24,7 @@ const AuthButton = () => {
           <Button color="error" onClick={handleLogOut}>
             Logout
           </Button>
-          <Button component={Link} href="/profile">
+          <Button component={Link} href="/dashboard/profile">
             My Profile
           </Button>
         </Stack>
