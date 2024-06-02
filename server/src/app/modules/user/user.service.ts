@@ -67,10 +67,17 @@ const deleteUser = async (req: any) => {
     })
     return res
 }
+const updateStatus = async (req: any) => {
+    const { id, role } = req.body
+    console.log({ id, role })
+    const res = await prisma.user.update({ where: { id }, data: { role } })
+    return res
+}
 export const UserService = {
     createUser,
     getMyProfileInfo,
     updateProfileInfo,
     getAllUser,
-    deleteUser
+    deleteUser,
+    updateStatus
 }

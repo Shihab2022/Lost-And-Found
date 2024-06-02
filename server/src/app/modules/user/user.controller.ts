@@ -49,10 +49,20 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
         data: result
     })
 })
+const updateStatus = catchAsync(async (req: Request, res: Response) => {
+    const result = await UserService.updateStatus(req)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User update successfully",
+        data: result
+    })
+})
 export const UserController = {
     createUser,
     getMyProfileInfo,
     updateProfileInfo,
     getAllUser,
-    deleteUser
+    deleteUser,
+    updateStatus
 }

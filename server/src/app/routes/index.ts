@@ -27,5 +27,6 @@ router.get('/my-profile', auth(), UserController.getMyProfileInfo)
 router.put('/my-profile', auth(), UserController.updateProfileInfo)
 router.get('/users', UserController.getAllUser)
 router.delete('/user', UserController.deleteUser)
+router.put('/user', UserController.updateStatus)
 
 export const rootRouter = router
