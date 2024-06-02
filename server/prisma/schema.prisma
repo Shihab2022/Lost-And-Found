@@ -23,6 +23,7 @@ model User {
   userProfile UserProfile?
   foundItem   FoundItem[]
   Claim       Claim[]
+  LostItem    LostItem[]
 
   @@map("users")
 }
@@ -46,12 +47,34 @@ model Category {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
   foundItem FoundItem[]
+  LostItem  LostItem[]
 
   @@map("category")
 }
 
 model FoundItem {
-  id             String    @id @default(uuid())
+  id             String   @id @default(uuid())
+  userId         String
+  categoryId     String
+  foundItemName  String
+  distinguishing String?
+  description    String?
+  location       String
+  color          String?
+  date           String?  
+  number         String?
+  email          String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  claim          Claim?
+  user           User     @relation(fields: [userId], references: [id])
+  category       Category @relation(fields: [categoryId], references: [id])
+
+  @@map("foundItem")
+}
+
+model LostItem {
+  id             String   @id @default(uuid())
   userId         String
   categoryId     String
   foundItemName  String
@@ -62,13 +85,14 @@ model FoundItem {
   date           String?
   number         String?
   email          String?
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  claim          Claim?
-  user           User      @relation(fields: [userId], references: [id])
-  category       Category  @relation(fields: [categoryId], references: [id])
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  claim          Claim?   @relation(fields: [claimId], references: [id])
+  user           User     @relation(fields: [userId], references: [id])
+  category       Category @relation(fields: [categoryId], references: [id])
+  claimId        String?
 
-  @@map("foundItem")
+  @@map("lostItem")
 }
 
 model Claim {
@@ -81,8 +105,9 @@ model Claim {
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
 
-  user      User      @relation(fields: [userId], references: [id])
-  foundItem FoundItem @relation(fields: [foundItemId], references: [id])
+  user      User       @relation(fields: [userId], references: [id])
+  foundItem FoundItem  @relation(fields: [foundItemId], references: [id])
+  LostItem  LostItem[]
 
   @@map("claim")
 }

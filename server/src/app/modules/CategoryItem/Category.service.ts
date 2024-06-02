@@ -36,6 +36,28 @@ const createFoundItem = async (req: any) => {
         ...result, user: isUserExit, category: isCategoryExit
     }
 }
+const createLostItem = async (req: any) => {
+    const userData = req.user
+    const data = req.body
+    const isCategoryExit = await prisma.category.findUniqueOrThrow({
+        where: {
+            id: data.categoryId
+        }
+    })
+    const isUserExit = await prisma.user.findUniqueOrThrow({
+        where: {
+            id: userData.userId
+        },
+        select: userIncludeField
+    })
+    data["userId"] = userData.userId
+    const result = await prisma.lostItem.create({
+        data
+    })
+    return {
+        ...result, user: isUserExit, category: isCategoryExit
+    }
+}
 const getCategory = async () => {
     const res = await prisma.category.findMany({})
     return res
@@ -149,6 +171,7 @@ export const CategoryService = {
     createClaim,
     getClaim,
     updateClaimStatus,
-    getCategory
+    getCategory,
+    createLostItem
 
 }

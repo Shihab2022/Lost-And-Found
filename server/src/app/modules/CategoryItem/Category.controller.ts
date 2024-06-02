@@ -22,7 +22,17 @@ const createFoundItem = catchAsync(async (req: Request, res: Response) => {
     sendResponse(res, {
         statusCode: httpStatus.CREATED,
         success: true,
-        message: "Found item category created successfully",
+        message: "Found item  created successfully",
+        data: result
+    })
+})
+const createLostItem = catchAsync(async (req: Request, res: Response) => {
+
+    const result = await CategoryService.createLostItem(req)
+    sendResponse(res, {
+        statusCode: httpStatus.CREATED,
+        success: true,
+        message: "Lost item created successfully",
         data: result
     })
 })
@@ -84,5 +94,6 @@ export const CategoryController = {
     createClaim,
     getClaim,
     updateClaimStatus,
-    getCategory
+    getCategory,
+    createLostItem
 }
