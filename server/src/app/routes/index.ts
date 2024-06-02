@@ -24,6 +24,6 @@ router.post('/claims', auth(), CategoryController.createClaim)
 router.get('/claims', auth(), CategoryController.getClaim)
 router.put('/claims/:claimId', auth(), validateRequest(categoryValidation.updateClaimStatus), CategoryController.updateClaimStatus)
 router.get('/my-profile', auth(), UserController.getMyProfileInfo)
-router.put('/my-profile', auth(), validateRequest(userValidation.updateProfile), UserController.updateProfileInfo)
+router.put('/my-profile', auth(), UserController.updateProfileInfo)
 
 export const rootRouter = router

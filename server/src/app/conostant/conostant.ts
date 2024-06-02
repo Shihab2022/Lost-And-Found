@@ -3,7 +3,8 @@ export const userIncludeField = {
     name: true,
     email: true,
     createdAt: true,
-    updatedAt: true
+    updatedAt: true,
+    role: true
 }
 
 export const allowedOrigins = [

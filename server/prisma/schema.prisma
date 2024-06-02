@@ -18,6 +18,7 @@ model User {
   name        String
   email       String       @unique
   password    String
+  role        Role         @default(USER)
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
   userProfile UserProfile?
@@ -61,7 +62,7 @@ model FoundItem {
   description    String?
   location       String
   color          String?
-  date           String?  
+  date           String?
   number         String?
   email          String?
   createdAt      DateTime @default(now())
@@ -116,4 +117,9 @@ enum Status {
   PENDING
   APPROVED
   REJECTED
+}
+
+enum Role {
+  USER
+  ADMIN
 }

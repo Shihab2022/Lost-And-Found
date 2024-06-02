@@ -40,19 +40,15 @@ const getMyProfileInfo = async (req: any) => {
 const updateProfileInfo = async (req: any) => {
     const { userId } = req.user
     const data = req.body
+
     await prisma.userProfile.findUniqueOrThrow({
         where: {
             userId
         }
     })
-    const userProfileInfo = await prisma.userProfile.update({
-        where: { userId },
+    const userProfileInfo = await prisma.user.update({
+        where: { id: userId },
         data,
-        include: {
-            user: {
-                select: userIncludeField
-            }
-        },
     })
     return userProfileInfo
 }
