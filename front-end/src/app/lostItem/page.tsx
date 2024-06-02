@@ -31,7 +31,7 @@ const LostItem = () => {
     const info = {
       categoryId: category!?.find((c) => c!.name === categoryName)?.id,
       foundItemName: brand,
-      date: "",
+      date: new Date(),
       ...rest,
     };
     try {

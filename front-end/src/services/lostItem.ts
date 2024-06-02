@@ -13,7 +13,7 @@ export const getCategory = async (params: any) => {
 export const createLostItem = async (params: any) => {
     const res = await apiHandler({
         baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
-        path: "/found-items",
+        path: "/lost-items",
         axiosMethod: "post",
         formData: false,
         params: params,
