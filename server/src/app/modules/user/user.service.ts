@@ -36,6 +36,12 @@ const getMyProfileInfo = async (req: any) => {
     })
     return result
 }
+const getAllUser = async () => {
+    const result = await prisma.user.findMany({
+        select: userIncludeField
+    })
+    return result
+}
 
 const updateProfileInfo = async (req: any) => {
     const { userId } = req.user
@@ -52,8 +58,19 @@ const updateProfileInfo = async (req: any) => {
     })
     return userProfileInfo
 }
+const deleteUser = async (req: any) => {
+    const { id } = req.body
+    const res = await prisma.$transaction(async (tx) => {
+        await tx.userProfile.delete({ where: { userId: id } })
+        const userDelete = await tx.user.delete({ where: { id } })
+        return userDelete
+    })
+    return res
+}
 export const UserService = {
     createUser,
     getMyProfileInfo,
-    updateProfileInfo
+    updateProfileInfo,
+    getAllUser,
+    deleteUser
 }
