@@ -23,7 +23,9 @@ import { getToken } from "@/utils/storage";
 import { decodedToken } from "@/utils/jwt";
 import { getUserInfo } from "@/services/auth";
 import { initialProfileProps } from "@/contants/common";
-
+import { userItem } from "../config";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -113,6 +115,7 @@ export default function DashboardDrawer({
   const token = getToken();
   const user = decodedToken(token);
   const [profileInfo, setProfileInfo] = React.useState(initialProfileProps);
+  const pathname = usePathname();
   const getUser = async () => {
     const res = await getUserInfo(user);
     const userInfo = res.data.data.user;
@@ -155,53 +158,52 @@ export default function DashboardDrawer({
         </DrawerHeader>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          {userItem.map((item, i) => {
+            const linkPath = `/dashboard/${item.path}`;
+            return (
+              <>
+                <Link href={linkPath}>
+                  <ListItem
+                    key={i}
+                    disablePadding
+                    sx={{
+                      ...(pathname === linkPath
+                        ? {
+                            borderRight: "3px solid #1586FD",
+                            "& svg": {
+                              color: "#1586FD",
+                            },
+                          }
+                        : {}),
+                      mb: 1,
+                    }}
+                  >
+                    <ListItemButton
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {item.icon && <item.icon />}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={item.title}
+                        sx={{ opacity: open ? 1 : 0 }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </Link>
+              </>
+            );
+          })}
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
