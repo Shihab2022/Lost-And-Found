@@ -18,8 +18,18 @@ import { useRouter } from "next/navigation";
 import { getToken } from "@/utils/storage";
 import { createLostItem, getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
+type TCategory = {
+  name: string;
+  id: string;
+};
+const initial: TCategory[] = [
+  {
+    name: "",
+    id: "",
+  },
+];
 const LostItem = () => {
-  const [category, setCategory] = React.useState([]);
+  const [category, setCategory] = React.useState(initial);
   const router = useRouter();
   const token = getToken();
   if (!token) {

@@ -40,3 +40,13 @@ export const updateUserInfo = async (params: any) => {
     });
     return res;
 };
+export const getAllUserInfo = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/users",
+        axiosMethod: "get",
+        formData: false,
+        params: params,
+    });
+    return res;
+};
