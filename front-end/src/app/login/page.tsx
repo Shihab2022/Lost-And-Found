@@ -89,9 +89,7 @@ export default function Login() {
         </CForm>
         <Grid container justifyContent="flex-end">
           <Grid item>
-            <Link href="/register">
-              Already have an account? Register
-            </Link>
+            <Link href="/register">Already have an account? Register</Link>
           </Grid>
         </Grid>
       </Box>

@@ -19,8 +19,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import { getToken } from "@/utils/storage";
-import { decodedToken } from "@/utils/jwt";
 import { getUserInfo } from "@/services/auth";
 import { initialProfileProps } from "@/contants/common";
 import { adminItem, userItem } from "../config";
@@ -113,14 +111,16 @@ export default function DashboardDrawer({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const token = getToken();
-  const user = decodedToken(token);
   const [profileInfo, setProfileInfo] = React.useState(initialProfileProps);
   const pathname = usePathname();
   const getUser = async () => {
-    const res = await getUserInfo(user);
-    const userInfo = res.data.data.user;
-    setProfileInfo(userInfo);
+    try {
+      const res = await getUserInfo({});
+      const userInfo = res.data.data.user;
+      setProfileInfo(userInfo);
+    } catch (error) {
+      console.log({ error });
+    }
   };
   React.useEffect(() => {
     getUser();

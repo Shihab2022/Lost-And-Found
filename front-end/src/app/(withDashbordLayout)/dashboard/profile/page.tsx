@@ -3,8 +3,6 @@ import { updateProfileSchema } from "@/Schema/updateProfile";
 import CForm from "@/components/froms/CFroms";
 import { initialProfileProps } from "@/contants/common";
 import { getUserInfo, updateUserInfo } from "@/services/auth";
-import { decodedToken } from "@/utils/jwt";
-import { getToken } from "@/utils/storage";
 import { Box, Button, Grid, Link, Stack, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { FieldValues } from "react-hook-form";
@@ -12,14 +10,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import CInputField from "@/components/froms/CInput";
 import { toast } from "sonner";
 const Profile = () => {
-  const token = getToken();
-  const user = decodedToken(token);
   const [profileInfo, setProfileInfo] = useState(initialProfileProps);
   const [isEdit, setIsEdit] = useState(false);
   const getUser = async () => {
-    const res = await getUserInfo(user);
-    const userInfo = res.data.data.user;
-    setProfileInfo(userInfo);
+    try {
+      const res = await getUserInfo({});
+      const userInfo = res.data.data.user;
+      setProfileInfo(userInfo);
+    } catch (error) {
+      console.log({ error });
+    }
   };
   useEffect(() => {
     getUser();
