@@ -87,6 +87,16 @@ const getCategory = catchAsync(async (req: Request, res: Response) => {
         data: result
     })
 })
+const myLostItem = catchAsync(async (req: Request, res: Response) => {
+    const result = await CategoryService.myLostItem()
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My Lost item get successfully",
+        data: result
+    })
+})
+
 export const CategoryController = {
     createCategory,
     createFoundItem,
@@ -95,5 +105,6 @@ export const CategoryController = {
     getClaim,
     updateClaimStatus,
     getCategory,
-    createLostItem
+    createLostItem,
+    myLostItem
 }
