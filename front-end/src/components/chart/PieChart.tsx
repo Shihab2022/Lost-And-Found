@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import ReactDOM from "react-dom";
-import ReactApexChart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface ApexChartProps {}
 
