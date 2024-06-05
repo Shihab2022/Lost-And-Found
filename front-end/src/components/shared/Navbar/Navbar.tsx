@@ -30,9 +30,6 @@ const Navbar = () => {
           <Typography component={Link} href="/about-us">
             About Us
           </Typography>
-          <Typography>Medicine</Typography>
-          <Typography>Diagnostics</Typography>
-          <Typography>NGOs</Typography>
         </Stack>
 
         <AuthButton />
