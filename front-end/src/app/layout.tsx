@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
-// import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import StoreProvider from "@/redux/StoreProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <Toaster position="top-center" />
-        {children}
-        {/* <AppRouterCacheProvider>{children}</AppRouterCacheProvider> */}
+        <Toaster position="top-center" />
+        <StoreProvider>
+          <AppRouterCacheProvider>{children}</AppRouterCacheProvider>
+        </StoreProvider>
       </body>
     </html>
   );

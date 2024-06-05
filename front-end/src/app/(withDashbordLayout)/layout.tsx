@@ -3,7 +3,8 @@ import DashboardDrawer from "@/components/Dashboard/DashboardDrawer/DashboardDra
 import { Box } from "@mui/material";
 
 const CommonLayout = ({ children }: { children: React.ReactNode }) => {
-  return <DashboardDrawer>{children} </DashboardDrawer>;
+  // return <DashboardDrawer>{children} </DashboardDrawer>;
+  return <p>hello</p>;
 };
 
 export default CommonLayout;
