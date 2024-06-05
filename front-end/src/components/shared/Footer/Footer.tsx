@@ -108,7 +108,7 @@ const Footer = () => {
         <Divider sx={{ my: 2 }} />
         <Grid container justifyContent="space-between" alignItems="center">
           <Typography variant="body2" color="textSecondary" align="center">
-            © 2023{" "}
+            © 2024{" "}
             <MuiLink href="#" underline="hover">
               Lost & Found
             </MuiLink>

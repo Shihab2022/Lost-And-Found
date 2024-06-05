@@ -8,5 +8,6 @@ export const lostItemSchema = z.object({
     location: z.string().min(1, { message: "Location is required" }),
     number: z.string().regex(/^\d+$/, { message: "Phone number must be numeric" }).optional(),
     email: z.string().email({ message: "Invalid email address" }).optional(),
+    file: z.string().optional(),
 });
 

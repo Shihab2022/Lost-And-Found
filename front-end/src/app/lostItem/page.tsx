@@ -19,6 +19,8 @@ import { getToken } from "@/utils/storage";
 import { createLostItem, getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
 import Link from "next/link";
+import CFileUploader from "@/components/froms/CFileUploader";
+import { modifyPayload } from "@/utils/modifyPayload";
 type TCategory = {
   name: string;
   id: string;
@@ -37,21 +39,25 @@ const LostItem = () => {
     router.push("/login");
   }
   const submitLostItem = async (values: FieldValues) => {
+    console.log("hello");
+    const data = modifyPayload(values);
+    console.log({ data });
     console.log({ values });
-    const { category: categoryName, brand, ...rest } = values;
-    const info = {
-      categoryId: category!?.find((c) => c!.name === categoryName)?.id,
-      foundItemName: brand,
-      date: new Date(),
-      ...rest,
-    };
+    // const { category: categoryName, brand, ...rest } = values;
+    // const info = {
+    //   categoryId: category!?.find((c) => c!.name === categoryName)?.id,
+    //   foundItemName: brand,
+    //   date: new Date(),
+    //   ...rest,
+    // };
+    // console.log({ info });
     try {
-      const res = await createLostItem(info);
-      console.log({ res });
+      // const res = await createLostItem(info);
+      // console.log({ res });
     } catch (error) {
       console.log({ error });
     }
-    console.log({ info });
+    // console.log({ info });
   };
   const getItemCategory = async () => {
     try {
@@ -66,7 +72,6 @@ const LostItem = () => {
   React.useEffect(() => {
     getItemCategory();
   }, []);
-  console.log({ category });
   return (
     <>
       <Container component="main" maxWidth="xl">
@@ -97,6 +102,7 @@ const LostItem = () => {
               color: "",
               distinguishing: "",
               location: "",
+              file: "",
             }}
           >
             <Grid container spacing={2} my={1}>
@@ -161,6 +167,9 @@ const LostItem = () => {
                   fullWidth={true}
                 />
               </Grid>
+              {/* <Grid item md={6}>
+                <CFileUploader name="file" label="Upload File" />
+              </Grid> */}
             </Grid>
             <Button
               sx={{
