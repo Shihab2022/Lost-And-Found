@@ -8,9 +8,15 @@ export const userIncludeField = {
 }
 
 export const allowedOrigins = [
-    'https://helpful-faloodeh-161127.netlify.app',
     'http://localhost:5173',
-    "https://teal-malabi-8f03ab.netlify.app",
+    "https://front-end-psi-tan.vercel.app/",
     "http://localhost:3000",
     // Add more allowed origins as needed
 ]
+
+export const corsOptions = {
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+    credentials: true // Allow credentials
+};
