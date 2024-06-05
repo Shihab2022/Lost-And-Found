@@ -1,6 +1,7 @@
 import assets from "@/assets";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 const Banner = () => {
   return (
@@ -42,8 +43,13 @@ const Banner = () => {
             distinctio unde ad esse quos repellendus animi consectetur.
           </Typography>
           <Stack direction="row" spacing={2} sx={{ marginTop: "15px" }}>
-            <Button variant="contained">Report a Lost Item</Button>
-            <Button variant="contained">Report a Found Item</Button>
+            <Link href="/lostItem">
+              {" "}
+              <Button variant="contained">Report a Lost Item</Button>
+            </Link>
+            <Link href="/foundItem">
+              <Button variant="contained">Report a Found Item</Button>
+            </Link>
           </Stack>
         </Stack>
       </Box>

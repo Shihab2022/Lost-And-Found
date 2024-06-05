@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { getToken } from "@/utils/storage";
 import { getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
+import Link from "next/link";
 type TCategory = {
   name: string;
   id: string;
@@ -63,9 +64,11 @@ const FoundItem = () => {
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <Link href="/">
+            <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+          </Link>
           <Typography component="h1" variant="h5">
             Add Your Found Item
           </Typography>
