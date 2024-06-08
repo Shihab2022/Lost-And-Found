@@ -30,6 +30,8 @@ router.delete('/user', UserController.deleteUser)
 router.put('/user', UserController.updateStatus)
 router.get('/myLostItem', auth(), CategoryController.myLostItem)
 router.get('/myFoundItem', auth(), CategoryController.myFoundItem)
+router.delete('/myLostItem', auth(), CategoryController.deleteLostItem)
+router.delete('/myFoundItem', auth(), CategoryController.deleteFoundItem)
 router.get('/myClaim', CategoryController.myClaimItem)
 
 export const rootRouter = router

@@ -1,9 +1,10 @@
 "use client";
 import LostItemTable from "@/components/table/table";
-import { getMyFoundItem } from "@/services/auth";
-import { Typography } from "@mui/material";
+import { deleteFoundItems, getMyFoundItem } from "@/services/auth";
+import { IconButton, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import { toast } from "sonner";
 const LostItem = () => {
   const [foundItem, setFound] = useState([]);
   const getFounded = async () => {
@@ -19,6 +20,17 @@ const LostItem = () => {
   useEffect(() => {
     getFounded();
   }, []);
+  const handleDelete = async (row: any) => {
+    try {
+      const res = await deleteFoundItems(row);
+      if (res.data.success) {
+        getFounded();
+        toast.success("Delete Successfully !");
+      }
+    } catch (error) {
+      console.log({ error });
+    }
+  };
   const columns = [
     {
       id: "foundItemName",
@@ -43,6 +55,18 @@ const LostItem = () => {
     { id: "location", label: "Location", minWidth: 120 },
     { id: "number", label: "Number", minWidth: 120 },
     { id: "email", label: "Email", minWidth: 120 },
+    {
+      id: "delete",
+      label: "Delete User",
+      minWidth: 120,
+      format: (row: any) => (
+        <Tooltip title="Delete">
+          <IconButton onClick={() => handleDelete(row)}>
+            <DeleteOutlineIcon sx={{ color: "red" }} />
+          </IconButton>
+        </Tooltip>
+      ),
+    },
   ];
   return (
     <div>

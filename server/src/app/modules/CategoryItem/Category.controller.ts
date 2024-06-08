@@ -114,6 +114,24 @@ const myClaimItem = catchAsync(async (req: Request, res: Response) => {
         data: result
     })
 })
+const deleteLostItem = catchAsync(async (req: Request, res: Response) => {
+    const result = await CategoryService.deleteLostItem(req)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Item delete successfully",
+        data: result
+    })
+})
+const deleteFoundItem = catchAsync(async (req: Request, res: Response) => {
+    const result = await CategoryService.deleteFoundItem(req)
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Item delete successfully",
+        data: result
+    })
+})
 
 export const CategoryController = {
     createCategory,
@@ -125,5 +143,8 @@ export const CategoryController = {
     getCategory,
     createLostItem,
     myLostItem,
-    myClaimItem, myFoundItem
+    myClaimItem,
+    myFoundItem,
+    deleteLostItem,
+    deleteFoundItem
 }

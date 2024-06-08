@@ -90,3 +90,23 @@ export const getMyFoundItem = async (params: any) => {
     });
     return res;
 };
+export const deleteLostItems = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/myLostItem",
+        axiosMethod: "delete",
+        formData: false,
+        params: params,
+    });
+    return res;
+};
+export const deleteFoundItems = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/myFoundItem",
+        axiosMethod: "delete",
+        formData: false,
+        params: params,
+    });
+    return res;
+};

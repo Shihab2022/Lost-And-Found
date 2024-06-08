@@ -197,6 +197,16 @@ const myClaimItem = async () => {
     })
     return result
 }
+const deleteLostItem = async (req: any) => {
+    const { id } = req.body
+    const res = await prisma.lostItem.delete({ where: { id } })
+    return res
+}
+const deleteFoundItem = async (req: any) => {
+    const { id } = req.body
+    const res = await prisma.foundItem.delete({ where: { id } })
+    return res
+}
 export const CategoryService = {
     createCategory,
     createFoundItem,
@@ -207,6 +217,8 @@ export const CategoryService = {
     getCategory,
     createLostItem,
     myLostItem,
-    myClaimItem, myFoundItem
+    myClaimItem, myFoundItem,
+    deleteLostItem,
+    deleteFoundItem
 
 }
