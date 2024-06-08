@@ -30,3 +30,13 @@ export const createFoundItem = async (params: any) => {
     });
     return res;
 };
+export const getMyClaim = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/myClaim",
+        axiosMethod: "get",
+        formData: false,
+        params: params,
+    });
+    return res;
+};

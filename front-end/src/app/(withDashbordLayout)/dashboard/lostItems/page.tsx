@@ -1,10 +1,11 @@
 "use client";
 import LostItemTable from "@/components/table/table";
 import { deleteLostItems, getMyLostItem } from "@/services/auth";
-import { IconButton, Tooltip, Typography } from "@mui/material";
+import { Button, IconButton, Stack, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { toast } from "sonner";
+import Link from "next/link";
 const LostItem = () => {
   const [lostItem, setLostItem] = useState([]);
   const getLostItem = async () => {
@@ -70,9 +71,19 @@ const LostItem = () => {
   ];
   return (
     <div>
-      <Typography variant="h4" sx={{ marginY: "20px", textAlign: "center" }}>
-        Your Lost Item
-      </Typography>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        spacing={2}
+      >
+        <Typography variant="h4" sx={{ marginY: "20px" }}>
+          Your Lost Item
+        </Typography>
+        <Link href="/lostItem">
+          <Button variant="contained">Add New Items</Button>
+        </Link>
+      </Stack>
       <LostItemTable rows={lostItem} columns={columns} />
     </div>
   );

@@ -106,7 +106,7 @@ const myFoundItem = catchAsync(async (req: Request, res: Response) => {
     })
 })
 const myClaimItem = catchAsync(async (req: Request, res: Response) => {
-    const result = await CategoryService.myClaimItem()
+    const result = await CategoryService.myClaimItem(req)
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,

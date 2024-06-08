@@ -181,8 +181,10 @@ const myFoundItem = async (req: any) => {
     })
     return result
 }
-const myClaimItem = async () => {
+const myClaimItem = async (req: any) => {
+    const { userId } = req.user
     const result = await prisma.claim.findMany({
+        where: { userId },
         include: {
             foundItem: {
                 include: {
