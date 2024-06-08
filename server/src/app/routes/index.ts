@@ -28,6 +28,7 @@ router.put('/my-profile', auth(), UserController.updateProfileInfo)
 router.get('/users', UserController.getAllUser)
 router.delete('/user', UserController.deleteUser)
 router.put('/user', UserController.updateStatus)
-router.get('/myLostItem', CategoryController.myLostItem)
+router.get('/myLostItem', auth(), CategoryController.myLostItem)
+router.get('/myClaim', CategoryController.myClaimItem)
 
 export const rootRouter = router
