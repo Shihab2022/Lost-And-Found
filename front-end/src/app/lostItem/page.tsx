@@ -39,25 +39,19 @@ const LostItem = () => {
     router.push("/login");
   }
   const submitLostItem = async (values: FieldValues) => {
-    console.log("hello");
-    const data = modifyPayload(values);
-    console.log({ data });
-    console.log({ values });
-    // const { category: categoryName, brand, ...rest } = values;
-    // const info = {
-    //   categoryId: category!?.find((c) => c!.name === categoryName)?.id,
-    //   foundItemName: brand,
-    //   date: new Date(),
-    //   ...rest,
-    // };
-    // console.log({ info });
+    const { category: categoryName, brand, ...rest } = values;
+    const info = {
+      categoryId: category!?.find((c) => c!.name === categoryName)?.id,
+      foundItemName: brand,
+      date: new Date(),
+      ...rest,
+    };
     try {
-      // const res = await createLostItem(info);
-      // console.log({ res });
+      const res = await createLostItem(info);
+      console.log({ res });
     } catch (error) {
       console.log({ error });
     }
-    // console.log({ info });
   };
   const getItemCategory = async () => {
     try {
@@ -102,7 +96,6 @@ const LostItem = () => {
               color: "",
               distinguishing: "",
               location: "",
-              file: "",
             }}
           >
             <Grid container spacing={2} my={1}>

@@ -30,6 +30,9 @@ const Navbar = () => {
           <Typography component={Link} href="/about-us">
             About Us
           </Typography>
+          <Typography component={Link} href="/dashboard/profile">
+            Dashboard
+          </Typography>
         </Stack>
 
         <AuthButton />
