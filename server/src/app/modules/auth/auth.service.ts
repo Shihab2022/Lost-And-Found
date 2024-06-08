@@ -29,6 +29,36 @@ const loginUser = async (payload: TLoginInfo) => {
     }
     return resData
 }
+const changePassword = async (payload: any) => {
+    const userData = await prisma.user.findUniqueOrThrow({
+        where: {
+            id: payload.id,
+        }
+    });
+
+    const isCorrectPassword: boolean = await bcrypt.compare(payload.password, userData.password);
+
+    if (!isCorrectPassword) {
+        throw new Error("Password incorrect!")
+    }
+
+    const hashedPassword: string = await bcrypt.hash(payload.updatedPass, 12);
+
+    await prisma.user.update({
+        where: {
+            id: payload.id,
+        },
+        data: {
+            password: hashedPassword,
+        }
+    })
+
+    return {
+        message: "Password changed successfully!"
+    }
+
+}
 export const AuthService = {
-    loginUser
+    loginUser,
+    changePassword
 }

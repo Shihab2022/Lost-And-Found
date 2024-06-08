@@ -33,5 +33,6 @@ router.get('/myFoundItem', auth(), CategoryController.myFoundItem)
 router.delete('/myLostItem', auth(), CategoryController.deleteLostItem)
 router.delete('/myFoundItem', auth(), CategoryController.deleteFoundItem)
 router.get('/myClaim', auth(), CategoryController.myClaimItem)
+router.post('/changePassword', auth(), AuthController.changePassword)
 
 export const rootRouter = router

@@ -28,6 +28,8 @@ export default function Login() {
         toast.success(res?.data?.message);
         setToken(token);
         router.push("/");
+      } else {
+        toast.error("something went wrong ");
       }
     } catch (error) {
       console.log({ error });
