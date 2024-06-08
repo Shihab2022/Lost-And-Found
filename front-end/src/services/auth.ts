@@ -110,3 +110,13 @@ export const deleteFoundItems = async (params: any) => {
     });
     return res;
 };
+export const createClaim = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/claims",
+        axiosMethod: "post",
+        formData: false,
+        params: params,
+    });
+    return res;
+};

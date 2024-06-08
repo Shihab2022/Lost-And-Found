@@ -57,7 +57,7 @@ const LostItem = () => {
     { id: "email", label: "Email", minWidth: 120 },
     {
       id: "delete",
-      label: "Delete User",
+      label: "Delete",
       minWidth: 120,
       format: (row: any) => (
         <Tooltip title="Delete">

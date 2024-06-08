@@ -20,3 +20,12 @@ export const cardData = [
         img: assets.cardImg3
     },
 ]
+
+export const Status = [
+
+
+    { name: "PENDING", value: "PENDING", },
+    { name: "APPROVED", value: "APPROVED", },
+    { name: "REJECTED", value: "REJECTED", }
+
+]
