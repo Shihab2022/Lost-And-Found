@@ -172,6 +172,15 @@ const myLostItem = async (req: any) => {
     })
     return result
 }
+const myFoundItem = async (req: any) => {
+    const { userId } = req.user
+    const result = await prisma.foundItem.findMany({
+        where: { userId }, include: {
+            category: true
+        }
+    })
+    return result
+}
 const myClaimItem = async () => {
     const result = await prisma.claim.findMany({
         include: {
@@ -198,6 +207,6 @@ export const CategoryService = {
     getCategory,
     createLostItem,
     myLostItem,
-    myClaimItem
+    myClaimItem, myFoundItem
 
 }

@@ -80,3 +80,13 @@ export const getMyLostItem = async (params: any) => {
     });
     return res;
 };
+export const getMyFoundItem = async (params: any) => {
+    const res = await apiHandler({
+        baseURL: process.env.NEXT_PUBLIC_BACKEND_API_URL,
+        path: "/myFoundItem",
+        axiosMethod: "get",
+        formData: false,
+        params: params,
+    });
+    return res;
+};
