@@ -16,9 +16,10 @@ import CDatePicker from "@/components/froms/CDatePicker";
 import { foundItemSchema } from "@/Schema/foundSchema";
 import { useRouter } from "next/navigation";
 import { getToken } from "@/utils/storage";
-import { getCategory } from "./../../services/lostItem";
+import { createFoundItem, getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
 import Link from "next/link";
+import { toast } from "sonner";
 type TCategory = {
   name: string;
   id: string;
@@ -38,7 +39,23 @@ const FoundItem = () => {
   }
   const submitFoundItem = async (values: FieldValues) => {
     console.log({ values });
+
+    try {
+      const { category: categoryName, brand, ...rest } = values;
+      const data = {
+        categoryId: category!?.find((c) => c!.name === categoryName)?.id,
+        date: new Date(),
+        ...rest,
+      };
+      const res = await createFoundItem(data);
+      if (res?.data?.success) {
+        toast.success("Created successfully");
+      }
+    } catch (error) {
+      toast.error("Some thing went wrong ");
+    }
   };
+  console.log({ category });
   const getItemCategory = async () => {
     try {
       const res = await getCategory(undefined);
@@ -83,12 +100,6 @@ const FoundItem = () => {
           >
             <Grid container spacing={2} my={1}>
               <Grid item md={12}>
-                {/* <CInputField
-                  name="category"
-                  label="Category"
-                  type="text"
-                  fullWidth={true}
-                /> */}
                 <CSelectField
                   name="category"
                   label="Category"

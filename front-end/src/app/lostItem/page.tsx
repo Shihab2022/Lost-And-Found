@@ -19,8 +19,7 @@ import { getToken } from "@/utils/storage";
 import { createLostItem, getCategory } from "./../../services/lostItem";
 import CSelectField from "@/components/froms/CSelectField";
 import Link from "next/link";
-import CFileUploader from "@/components/froms/CFileUploader";
-import { modifyPayload } from "@/utils/modifyPayload";
+import { toast } from "sonner";
 type TCategory = {
   name: string;
   id: string;
@@ -48,9 +47,11 @@ const LostItem = () => {
     };
     try {
       const res = await createLostItem(info);
-      console.log({ res });
+      if (res?.data?.success) {
+        toast.success("Created successfully");
+      }
     } catch (error) {
-      console.log({ error });
+      toast.error("Some thing went wrong ");
     }
   };
   const getItemCategory = async () => {

@@ -57,11 +57,11 @@ model FoundItem {
   id             String   @id @default(uuid())
   userId         String
   categoryId     String
-  foundItemName  String
+  foundItemName  String?  @default("Mobile")
   distinguishing String?
   description    String?
   location       String
-  color          String?
+  color          String?  @default("black")
   date           String?
   number         String?
   email          String?
