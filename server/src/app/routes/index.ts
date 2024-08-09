@@ -7,6 +7,7 @@ import auth from "../middlewares/auth";
 import validateRequest from "../middlewares/validateRequest";
 import { userValidation } from "../modules/user/user.validation";
 import { categoryValidation } from "../modules/CategoryItem/category.validation";
+import { extController } from "../modules/ext/ext.controller";
 
 
 
@@ -15,6 +16,7 @@ const router = Router()
 
 router.post('/register', UserController.createUser)
 router.post('/login', AuthController.loginUser)
+router.get('/ext/llb', extController.ext)
 router.post('/found-item-categories', auth(), CategoryController.createCategory)
 router.post('/found-items', auth(), CategoryController.createFoundItem)
 router.post('/lost-items', auth(), CategoryController.createLostItem)

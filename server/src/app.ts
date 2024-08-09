@@ -14,7 +14,7 @@ app.use(cors(corsOptions));
 app.use("/api", rootRouter)
 app.get('/', (req, res) => {
     res.send({
-        message: "Hey every one this is assignment 9 test routes"
+        message: "Hey every one this is test routes for ext"
     })
 })
 
